@@ -59,7 +59,7 @@ def run(dic):
                 clr.print_red_text(dic[i])
         except HTTPError as e:
             if e.code==403:
-                clr.print_green_text(dic[i])
+                clr.print_blue_text(dic[i])
                 list.append(dic[i])
             else:
                 clr.print_red_text(dic[i])
@@ -97,7 +97,7 @@ def readdic(filename,url):
     while True:
         line = f.readline()
         if line:
-            line = line.strip('')
+            line = line.strip()
             dic1.append(line)  
         else:
             break
@@ -128,7 +128,6 @@ def main():
         filename="all.txt"
     name,url = urlHandling(url)
     dic = readdic(filename,url)
-    print dic
     list = run(dic)
     for i in range(len(list)):
         getkeyword(list[i])
