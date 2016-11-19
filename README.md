@@ -12,9 +12,11 @@
 		但是403多半没什么用= =！ </br>
 		有爬虫可以去爬可能是后台的页面,本程序的关键字有:用户名|邮箱|密码|username|user|pass|password|admin|login|登陆|验证码|管理|user_login</br>
 		误报的情况肯定有了  比如说wordpress几乎只要存在的页面都有登陆等字样</br>
+		
+重要说明:字典中请不要出现空行，如果出现程序将会报错</br>
 
 使用方法:
-Usage: 输入格式: -u "url" [-T] "进程数(默认为5，建议不要超过20)" [-f] "字典文件(可选)"</br>
+Usage: 输入格式: -u "url" [-T] "进程数[可选](默认为5)" [-f] "字典文件(可选)"</br>
 
 Options:</br>
   -h, --help            show this help message and exit</br>
@@ -24,10 +26,12 @@ Options:</br>
   -T THREADNUM          输入进程数量,默认为5</br>
  
  
-例如：  scanning.py -u "xxxxxxx.com"</br>
+例如：  
+	
+		scanning.py -u "xxxxxxx.com"
 
-		scanning.py -u "xxxxxxx.com" -f "1.dic"</br>
+		scanning.py -u "xxxxxxx.com" -f "1.dic"
 		
-		scanning.py -u "xxxxxxx.com" -f "1.dic" -T "20"</br>
+		scanning.py -u "xxxxxxx.com" -f "1.dic" -T "20"
 		
 联系方式:smile@smilehakcer.net

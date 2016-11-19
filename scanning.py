@@ -62,20 +62,19 @@ def urlHandling(url):
         url = "http://"+url
     return name,url
 def run(dici):
+    global list403
     u"""判断http请求码"""
     try:
         status = urllib2.urlopen(dici,timeout=10).getcode()
         if status == 200:
             print dici  
             return dici
-            #print list
         else:
             print dici
     except HTTPError as e:
         if e.code==403:
             print dici
             list403.append(dici)
-            #print list
         else:
             print dici
     except URLError as e:
@@ -133,13 +132,9 @@ def main():
         filename="all.txt"
     if threadnum == None:
         threadnum = 5
-        #threadnum = int(threadnum)
-    else:
-        pass
-        #threadnum = int(threadnum)
     name,url = urlHandling(url)
     dic = readdic(filename,url)
-    pool = Pool(10)
+    pool = Pool(threadnum)
     for i in range(len(dic)):
         res = pool.apply_async(func=run,args=(dic[i],))
         list.append(res)
