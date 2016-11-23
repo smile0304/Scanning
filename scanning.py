@@ -5,6 +5,7 @@ import re
 import os
 import urlparse
 import writefile
+import time
 from urllib2 import HTTPError, URLError
 from httplib import responses
 from writefile import writefile
@@ -61,22 +62,26 @@ def urlHandling(url):
         name = url
         url = "http://"+url
     return name,url
-def run(dici):
+def run(dici,stime):
     global list403
     u"""判断http请求码"""
     try:
         status = urllib2.urlopen(dici,timeout=10).getcode()
         if status == 200:
-            print dici  
+            print dici
+            time.sleep(stime)
             return dici
         else:
             print dici
+            time.sleep(stime)
     except HTTPError as e:
         if e.code==403:
             print dici
             list403.append(dici)
+            time.sleep(stime)
         else:
             print dici
+            time.sleep(stime)
     except URLError as e:
         print u"连接超时:" + dici
 def getkeyword(url):
@@ -117,14 +122,16 @@ def readdic(filename,url):
     return dic2
 def main():
     print author
-    parser = optparse.OptionParser(u'输入格式: -u "url" [-T] "进程数(默认为5，建议不要超过20)" [-f] "字典文件(可选)"')
+    parser = optparse.OptionParser(u'输入格式: -u "url" [-T] "进程数(默认为5，建议不要超过20)" [-f] "字典文件(可选)" [-t] "间隔时间"')
     parser.add_option('-u','--url',dest='url',type='string',help=u'输入url地址')
     parser.add_option('-f','--file',dest='filename',type="string",help=u'请输入字典文件名')
     parser.add_option('-T',dest='threadnum',type='int',help=u'输入进程数量,默认为5')
+    parser.add_option('-t',dest='stime',type='int',help=u'间隔时间,默认为0')
     (options,args) = parser.parse_args()
     url = options.url
     filename = options.filename
     threadnum = options.threadnum
+    stime = options.stime
     if url == None:
        print parser.usage
        exit(0)
@@ -132,11 +139,13 @@ def main():
         filename="all.txt"
     if threadnum == None:
         threadnum = 5
+    if stime == None:
+        stime = 0
     name,url = urlHandling(url)
     dic = readdic(filename,url)
     pool = Pool(threadnum)
     for i in range(len(dic)):
-        res = pool.apply_async(func=run,args=(dic[i],))
+        res = pool.apply_async(func=run,args=(dic[i],stime))
         list.append(res)
     pool.close()
     pool.join()
@@ -155,5 +164,6 @@ def main():
         print u"爬虫没有判断出可能为后台的地址，请手动确认!"
     writefile(name,houtai,result_list,list403)
     print u'已在当前文件夹下生成%s.txt的扫描结果' % (name)
+    
 if __name__ == '__main__':
     main()
