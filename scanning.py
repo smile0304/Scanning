@@ -19,25 +19,8 @@ list403=[]
 result_list=[]
 Msgnum = 0 #判断错误次数
 author= u"""
-             へ　　　　　／|
-　　/＼7　　　 ∠＿/
-　 /　│　　 ／　／
-　│　Z ＿,＜　／　　 /`ヽ
-　│　　　　　ヽ　　 /　　〉
-　 Y　　　　　`　 /　　/
-　●　　●　　〈　　/
-　()　 へ　　　　|　＼〈
-　　> _　 ィ　 │ ／／
-　 / へ　　 /　＜| ＼＼
-　 ヽ_　　(_／　 │／／
-　　7　　　　　　　|／
-　　＞―r￣￣`―＿
-
-    
-     "******************************************"
      "anuthor: smile.苦笑"
-     "email:smile@smilehacker.net"
-     "当眼泪流尽的时候，留下的应该是坚强"
+     "email:tsmielt@gmail.com"
      """
 def judlist(result_list,list403):
     if len(result_list) or len(list403):
