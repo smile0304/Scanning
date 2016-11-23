@@ -20,13 +20,12 @@ Usage: 输入格式: -u "url" [-T] "进程数[可选](默认为5)" [-f] "字典�
 
 Options:
 
-
-  -h, --help            show this help message and exit
-  -u URL, --url=URL     输入url地址
-  -f FILENAME, --file=FILENAME
-                        请输入字典文件名
-  -T THREADNUM          输入进程数量,默认为5
-  -t STIME              间隔时间,默认为0 (考虑防火墙)
+	  -h, --help            show this help message and exit
+	  -u URL, --url=URL     输入url地址
+	  -f FILENAME, --file=FILENAME
+							请输入字典文件名
+	  -T THREADNUM          输入进程数量,默认为5
+	  -t STIME              间隔时间,默认为0 (考虑防火墙)
  
  
 例如：  
