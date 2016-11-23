@@ -70,8 +70,13 @@ def run(dici,stime):
 def getkeyword(url):
     u"""判断请求后台页面的关键字"""
     keyword = u"用户名|邮箱|密码|username|user|pass|password|admin|login|登陆|验证码|管理|user_login"
-    response = urllib2.urlopen(url)
-    html = response.read()
+    try:
+        response = urllib2.urlopen(url)
+        html = response.read()
+    except URLError as e:
+        pass
+    except HTTPError as e:
+        pass
     keywordlist = re.findall(keyword, html)
     if len(keywordlist):
         houtai.append(url)
