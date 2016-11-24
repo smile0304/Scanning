@@ -39,3 +39,5 @@ Options:
 		scanning.py -u "xxxxxxx.com" -f "1.dic" -T "20" -t "3"
 
 tsmilet@gmail.com
+
+新增：NextStation.py  旁站扫描模块，暂时没有加到主模块里
